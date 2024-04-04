@@ -14,18 +14,36 @@ import java.util.regex.Pattern;
 
 public class InputDataValidator {
 
+  /**
+   * Validates if input data is empty.
+   *
+   * @param data the input data to validate
+   * @throws InputValidationFailedException if the input data is empty
+   */
   public void validateData(List<String> data) {
     if (data == null || data.isEmpty()) {
       throw new InputValidationFailedException("Input data is empty!");
     }
   }
 
+  /**
+   * Validates the row count of input data.
+   *
+   * @param rowCount the row count of input data
+   * @throws InputValidationFailedException if the row count is less than 4
+   */
   public void validateDataRowCount(int rowCount) {
     if (rowCount < 4) {
       throw new InputValidationFailedException("Invalid input data row count!");
     }
   }
 
+  /**
+   * Validates the field data for size and format.
+   *
+   * @param fieldData the field data to validate
+   * @throws InputValidationFailedException if the field data is invalid
+   */
   public void validateFieldData(String fieldData) {
     String[] fieldDataList = fieldData.split(SPACE);
     if (fieldDataList.length != 2) {
@@ -42,6 +60,13 @@ public class InputDataValidator {
     }
   }
 
+  /**
+   * Validates the car data for position, direction, and format.
+   *
+   * @param carData the car data to validate
+   * @param field the field object representing the simulation field
+   * @throws InputValidationFailedException if the car data is invalid
+   */
   public void validateCarData(String carData, Field field) {
     String[] initialPosition = carData.split(SPACE);
     if (initialPosition.length != 3) {
@@ -64,6 +89,12 @@ public class InputDataValidator {
     }
   }
 
+  /**
+   * Validates the car commands for format and content.
+   *
+   * @param commands the car commands to validate
+   * @throws InputValidationFailedException if the commands are invalid
+   */
   public void validateCommands(String commands) {
     String regex = "^[LRF]+$";
     if (!Pattern.matches(regex, commands)) {
@@ -71,6 +102,12 @@ public class InputDataValidator {
     }
   }
 
+  /**
+   * Validates the car name.
+   *
+   * @param carName the car name to validate
+   * @throws InputValidationFailedException if the car name is invalid
+   */
   public void validateCarName(String carName) {
     if (carName == null || carName.isEmpty()) {
       throw new InputValidationFailedException("Invalid Car Name!");

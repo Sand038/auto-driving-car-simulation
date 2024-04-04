@@ -19,10 +19,21 @@ public class CarService {
   private static final String NO_COLLISION = "no collision";
   private final InputDataValidator inputDataValidator;
 
+  /**
+   * Constructor for CarService class.
+   *
+   * @param inputDataValidator the input data validator
+   */
   public CarService(InputDataValidator inputDataValidator) {
     this.inputDataValidator = inputDataValidator;
   }
 
+  /**
+   * Retrieves the latest position of a car based on the given input data.
+   *
+   * @param data the input data containing field size, car initial position, and commands
+   * @return the latest position of the car
+   */
   public String getLatestPosition(List<String> data) {
     inputDataValidator.validateData(data);
     String fieldData = data.get(0);
@@ -34,18 +45,26 @@ public class CarService {
     String commands = data.get(2);
     inputDataValidator.validateCommands(commands);
 
+    // Initialize car object using input data
     String[] initialPosition = carData.split(SPACE);
     int initialX = Integer.parseInt(initialPosition[0]);
     int initialY = Integer.parseInt(initialPosition[1]);
     char initialDirection = initialPosition[2].charAt(0);
     Car car = getCar(null, initialX, initialY, commands, initialDirection);
 
+    // Execute commands to update the latest position
     for (char instruction : car.getCommands().toCharArray()) {
       executeCommand(field, car, instruction);
     }
     return car.getPosition() + SPACE + car.getDirection();
   }
 
+  /**
+   * Retrieves collision points based on the given input data.
+   *
+   * @param data the input data containing field size and multiple car configurations
+   * @return the collision points, if any, otherwise "no collision"
+   */
   public String getCollisionPoints(List<String> data) {
     inputDataValidator.validateData(data);
     inputDataValidator.validateFieldData(data.get(0));
@@ -53,27 +72,34 @@ public class CarService {
     Field field = new Field(Integer.parseInt(size[0]), Integer.parseInt(size[1]));
     data.remove(0);
 
+    // Extract car data and initialize cars
     List<Car> cars = getCarData(data, field);
     int maxLength = getMaxCommandLength(cars);
     int step = 0;
     boolean isCollided = false;
 
+    // Simulate movement and check for collisions
     for (int i = 0; i < maxLength - 1; i++) {
+      // Map to store positions of cars at each step
       Map<String, String> positions = new HashMap<>();
       for (Car car : cars) {
+        // Execute command for each car
         executeCommand(field, car, car.getCommands().charAt(i));
         String carName = car.getName();
         String newPosition = car.getPosition();
+        // Check for collisions
         if (positions.containsValue(newPosition)) {
           isCollided = true;
         }
         positions.put(carName, newPosition);
       }
       step++;
+      // Return collided car details if collision occurs
       if (isCollided) {
         return getCollidedCarDetails(cars, step);
       }
     }
+    // Return "no collision" if no collision occurs
     return NO_COLLISION;
   }
 

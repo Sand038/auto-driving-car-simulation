@@ -13,10 +13,21 @@ public class Car extends Navigation {
   private int positionY;
   private String commands;
 
+  /**
+   * Gets the current position of the car.
+   *
+   * @return A string representing the current position of the car.
+   */
   public String getPosition() {
     return positionX + SPACE + positionY;
   }
 
+  /**
+   * Moves the car forward based on its current direction.
+   *
+   * @param width  The width of the field.
+   * @param height The height of the field.
+   */
   public void moveForward(int width, int height) {
     switch (direction) {
       case NORTH:
