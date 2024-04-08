@@ -152,6 +152,15 @@ class CarServiceTest {
   }
 
   @Test
+  void getLatestPosition_whenItTryingToMoveOutOfBoundry() {
+    List<String> inputData = new ArrayList<>(
+        Arrays.asList("5 5", "1 1 N", "FFFFFFFFRFFFFFFFF")
+    );
+    String result = carService.getLatestPosition(inputData);
+    Assertions.assertEquals("4 4 E", result);
+  }
+
+  @Test
   void getCollisionPoints_whenInputDataIsEmpty() {
     Exception exception = Assertions.assertThrows(InputValidationFailedException.class,
         () -> carService.getCollisionPoints(Collections.emptyList()));

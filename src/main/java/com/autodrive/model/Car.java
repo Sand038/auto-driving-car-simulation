@@ -31,12 +31,12 @@ public class Car extends Navigation {
   public void moveForward(int width, int height) {
     switch (direction) {
       case NORTH:
-        if (positionY < height) {
+        if (positionY < height - 1) {
           positionY++;
         }
         break;
       case EAST:
-        if (positionX < width) {
+        if (positionX < width - 1) {
           positionX++;
         }
         break;
