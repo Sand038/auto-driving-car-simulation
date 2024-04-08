@@ -50,6 +50,11 @@
     mvn test
     ```
 
+6. Please locate the attached screenshots at the following path: 
+    ```
+    src/main/resources/Screenshots
+    ```
+
 ## Auto Driving Car Simulation Design and Assumptions
 
 ### 1. Introduction:
