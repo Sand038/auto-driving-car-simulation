@@ -12,48 +12,29 @@
 
    - For part 1:
 
-       ```
-       mvn exec:java -Dexec.mainClass=com.autodrive.executor.CarSimulationExecutor
-       ```
+        ```
+        java -cp target\auto-driving-car-simulation-1.0-SNAPSHOT.jar com.autodrive.executor.CarSimulationExecutor
+        ```
 
-   - For part 2:
+    - For part 2:
 
-       ```
-       mvn exec:java -Dexec.mainClass=com.autodrive.executor.CarSimulationCollisionExecutor
-       ```
+        ```
+        java -cp target\auto-driving-car-simulation-1.0-SNAPSHOT.jar com.autodrive.executor.CarSimulationCollisionExecutor
+        ```
 
-3. For part 1, enter data in the following format and press enter:
+3. Please follow the provided instructions and adhere to the example format when entering data. If any section contains invalid data, you will be prompted to re-enter that specific section.
 
-    ```
-    10 10
-    1 2 N
-    FFRFFFRRLF
-    ```
-
-4. For part 2, enter data in the following format and press enter 3 times. You need to press enter 3 times because the program expects you to enter details for more cars. The program will start executing when you enter empty car details as the next car details section and press enter.
-
-    ```
-    10 10
-
-    A
-    1 2 N
-    FFRFFFFRRL
-
-    B
-    7 8 W
-    FFLFFFFFFF
-    ```
-
-5. To run tests, execute the following command:
+4. To run tests, execute the following command:
 
     ```
     mvn test
     ```
+5. Please locate the attached screenshots at the following path:
 
-6. Please locate the attached screenshots at the following path: 
     ```
-    src/main/resources/Screenshots
+    Screenshots
     ```
+
 
 ## Auto Driving Car Simulation Design and Assumptions
 
@@ -91,4 +72,4 @@ The Auto Driving Car Simulation is designed to simulate the movement of cars on 
 
 - Termination Conditions (Part 2): The simulation terminates upon collision between cars or completion of all car movements.
 
-- Input Data (Part 2): Input data should be in the specified format, and the program expects it to collect details for multiple cars. Execution begins once you input empty details for the next car section and press Enter. (This means, after entering the last valid car details, pressing Enter three times will start executing the program.)
+- Input Data (Part 2): Input data should be in the specified format, and the program expects it to collect details for multiple cars. Execution begins once you don't want to continue entering more car details.

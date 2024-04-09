@@ -9,7 +9,6 @@ import static com.autodrive.model.Directions.WEST;
 import com.autodrive.exception.InputValidationFailedException;
 import com.autodrive.model.Field;
 import java.util.Arrays;
-import java.util.List;
 import java.util.regex.Pattern;
 
 public class InputDataValidator {
@@ -20,21 +19,9 @@ public class InputDataValidator {
    * @param data the input data to validate
    * @throws InputValidationFailedException if the input data is empty
    */
-  public void validateData(List<String> data) {
+  public void validateData(String data) {
     if (data == null || data.isEmpty()) {
       throw new InputValidationFailedException("Input data is empty!");
-    }
-  }
-
-  /**
-   * Validates the row count of input data.
-   *
-   * @param rowCount the row count of input data
-   * @throws InputValidationFailedException if the row count is less than 4
-   */
-  public void validateDataRowCount(int rowCount) {
-    if (rowCount < 4) {
-      throw new InputValidationFailedException("Invalid input data row count!");
     }
   }
 

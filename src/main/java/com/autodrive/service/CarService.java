@@ -35,7 +35,6 @@ public class CarService {
    * @return the latest position of the car
    */
   public String getLatestPosition(List<String> data) {
-    inputDataValidator.validateData(data);
     String fieldData = data.get(0);
     inputDataValidator.validateFieldData(fieldData);
     String[] size = fieldData.split(SPACE);
@@ -66,7 +65,6 @@ public class CarService {
    * @return the collision points, if any, otherwise "no collision"
    */
   public String getCollisionPoints(List<String> data) {
-    inputDataValidator.validateData(data);
     inputDataValidator.validateFieldData(data.get(0));
     String[] size = data.get(0).split(SPACE);
     Field field = new Field(Integer.parseInt(size[0]), Integer.parseInt(size[1]));
@@ -105,13 +103,12 @@ public class CarService {
 
   private List<Car> getCarData(List<String> data, Field field) {
     List<Car> cars = new ArrayList<>();
-    for (int i = 0; i < data.size(); i = i + 4) {
-      inputDataValidator.validateDataRowCount(data.size() - i);
-      String carName = data.get(i + 1);
+    for (int i = 0; i < data.size(); i = i + 3) {
+      String carName = data.get(i);
       inputDataValidator.validateCarName(carName);
-      String carData = data.get(i + 2);
+      String carData = data.get(i + 1);
       inputDataValidator.validateCarData(carData, field);
-      String commands = data.get(i + 3);
+      String commands = data.get(i + 2);
       inputDataValidator.validateCommands(commands);
 
       String[] initialPosition = carData.split(SPACE);
