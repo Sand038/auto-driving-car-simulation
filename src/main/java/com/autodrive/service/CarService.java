@@ -82,7 +82,9 @@ public class CarService {
       Map<String, String> positions = new HashMap<>();
       for (Car car : cars) {
         // Execute command for each car
-        executeCommand(field, car, car.getCommands().charAt(i));
+        if (i < car.getCommands().length()) {
+          executeCommand(field, car, car.getCommands().charAt(i));
+        }
         String carName = car.getName();
         String newPosition = car.getPosition();
         // Check for collisions
